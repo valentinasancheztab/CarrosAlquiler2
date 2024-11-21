@@ -1,0 +1,130 @@
+1. REGISTRAR UN USUARIO ADMINISTRADOR
+Tipo de Solicitud: POST URL: http://localhost:8080/users/register
+
+{
+  "id": "001",
+  "name": "Admin User",
+  "age": 35,
+  "role": "ADMIN",
+  "hasVisionImpairment": false,
+  "hasHearingImpairment": false,
+  "login": "adminuser",
+  "passwd": "admin123"
+}
+
+
+2. REGISTRAR UN USUARIO REGULAR
+Tipo de Solicitud: POST URL: http://localhost:8080/users/register
+
+{
+  "id": "002",
+  "name": "Regular User",
+  "age": 28,
+  "role": "USER",
+  "hasVisionImpairment": false,
+  "hasHearingImpairment": false,
+  "login": "regularuser",
+  "passwd": "user123"
+}
+
+3. VALIDAR UN USUARIO ADMINISTRADOR
+Tipo de Solicitud: POST URL: http://localhost:8080/users/validate
+
+{
+  "login": "regularuser",
+  "passwd": "user123"
+}
+
+/////////////////////////////////////////////////////////////
+
+FUNCIONALIDADES ESPECIFICAS DE ADMINISTRADORES
+
+5. LISTAR CARS DISPONIBLES 
+Tipo de Solicitud: GET URL: http://localhost:8080/vehicles/available/cars?login=adminuser
+
+6. LISTAR MOTORCYCLES DISPONIBLES
+http://localhost:8080/vehicles/available/motorcycles?login=adminuser
+
+7. LISTAR TRUCKS DISPONIBLES
+Tipo de Solicitud: GET URL: http://localhost:8080/vehicles/available/trucks?login=adminuser
+
+8.LISTAR VANS DISPONIBLES
+Tipo de Solicitud: GET URL: http://localhost:8080/vehicles/available/vans?login=adminuser
+
+9. ACTUALIZAR DISPONIBILIDAD DE UN VEHICULO
+http://localhost:8080/vehicles/availability/CAR001?isAvailable=false&login=adminuser
+
+10. VALIDAR CONDICIONES DE UN VEHICULO
+http://localhost:8080/vehicles/validateConditions/CAR001?conditions=good&login=adminuser
+
+11. CREAR RESTRICCIONES PARA USUARIOS EN ACCIONES
+Tipo de Solicitud: POST URL: http://localhost:8080/users/createRestrictions?login=adminuser
+
+{
+  "id": "002",
+  "name": "Regular User",
+  "age": 28,
+  "role": "USER",
+  "hasVisionImpairment": false,
+  "hasHearingImpairment": false,
+  "login": "regularuser",
+  "passwd": "user123"
+}
+
+
+12. GENERAR UN REPORTE DE USO 
+Tipo de Solicitud: GET URL: http://localhost:8080/vehicles/usageReport?startDate=2023-01-01&endDate=2023-12-31&login=adminuser
+
+/////////////////////////////////////////////////////////////////
+
+PRUEBAS DE FUNCIONALIDADES GENERALES
+
+13. ALQUILAR UN VEHICULO 
+Tipo de Solicitud: POST URL: http://localhost:8080/vehicles/rent/CAR001
+
+{
+  "id": "USER001",
+  "name": "John Doe",
+  "age": 30,
+  "role": "USER",
+  "hasVisionImpairment": false,
+  "hasHearingImpairment": false,
+  "login": "johndoe",
+  "passwd": "password123"
+}
+
+14. DEVOLVER UN VEHICULO
+Tipo de Solicitud: POST URL: http://localhost:8080/vehicles/return/CAR001
+
+15. CARGA MASIVA(NO ES NECESARIO)
+Tipo de Solicitud: POST URL: http://localhost:8080/vehicles/bulkUpload?login=adminuser Headers: Content-Type: multipart/form-data Body:
+
+Selecciona form-data.
+
+Añade un campo con:
+
+Key: file
+
+Type: File
+
+Value: selecciona el archivo vehicles.csv de tu sistema
+
+//////////////////////////////////////////////////////////////////////
+
+PRUEBAS DE ACCESO DENEGADO EN USUARIOS NO ADMINS
+
+16. INTENTAR LISTAR CARS DISPONIBLES CON USUARIO REGULAR
+Tipo de Solicitud: GET URL: http://localhost:8080/vehicles/available/cars?login=regularuser
+
+17. INTENTAR ACTUALIZAR LA DISPONIBILIDAD DE UN VEHICULO CON USUARIO REGULAR 
+Tipo de Solicitud: PUT URL: http://localhost:8080/vehicles/availability/CAR001?isAvailable=false&login=regularuser
+
+////////////////////////////////////////////////////////////////////////
+
+PRUEBAS COMPLEMENTARIAS
+
+18. LISTAR TODOS LOS VEHICULOS
+Tipo de Solicitud: GET URL: http://localhost:8080/vehicles/all
+
+19. LISTAR VEHICULOS DISPONIBLES
+Tipo de Solicitud: GET URL: http://localhost:8080/vehicles/available

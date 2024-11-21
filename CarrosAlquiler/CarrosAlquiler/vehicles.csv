@@ -1,0 +1,5 @@
+licensePlate,kilometers,rentalValue,isElectric,numberOfDoors,cargoCapacity,seatingCapacity,hasSidecar
+CAR001,5000,100.0,false,4,,,
+TRK001,15000,200.0,false,,10.0,,
+VAN001,8000,150.0,true,,,12,
+MOTO001,2000,75.0,false,,,,true
